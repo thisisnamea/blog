@@ -3,6 +3,13 @@
 @section('title',$title)
 
 @section('content')
+
+@if(Session::has('info'))
+    <script type="text/javascript">alert('{{Session::get('info')}}');</script>
+@endif
+
+
+
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span>
@@ -54,15 +61,15 @@
                 <thead>
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 198px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                        rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
                             ID
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 200px;" aria-label="Browser: activate to sort column ascending">
                             用户名
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 200px;" aria-label="Platform(s): activate to sort column ascending">
                             邮箱
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
@@ -82,7 +89,7 @@
                            权限
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 250px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
                         </th>
                     </tr>
@@ -107,7 +114,7 @@
                         </td>
                         <td class=" ">
                             @if ($v->uimg)
-                            <img src="" alt="" width='100'>
+                            <img src="{{$v->uimg}}" alt="" width='100'>
                             @else
                             无
                             @endif 
@@ -133,8 +140,13 @@
                             @endif
                         </td>
                          <td class=" ">
-                            <a href="">修改</a>
-                            <a href="">删除</a>
+                            <a href="/admin/user/{{$v->uid}}/edit" class="btn btn-info">修改</a>
+                        <form action="/admin/user/{{$v->uid}}" method="post">
+                            {{ method_field('DELETE') }}
+                            {{csrf_field()}}
+                             <button class="btn btn-danger">删除</button>
+                        </form>
+                           
                         </td>
                     </tr>
                  
@@ -153,41 +165,40 @@
 
 
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-
+    
 				{{$res->links()}}
+                <style type="text/css">
+                    #DataTables_Table_1_paginate .active{
+                        background-color: #a5ad4e;
+                        color: #323232;
+                        border: none;
+                        background-image: none;
+                        box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
 
 
-                <a class="first paginate_button paginate_button_disabled" tabindex="0"
-                id="DataTables_Table_1_first">
-                    First
-                </a>
-                <a class="previous paginate_button paginate_button_disabled" tabindex="0"
-                id="DataTables_Table_1_previous">
-                    Previous
-                </a>
-                <span>
-                    <a class="paginate_active" tabindex="0">
-                        1
-                    </a>
-                    <a class="paginate_button" tabindex="0">
-                        2
-                    </a>
-                    <a class="paginate_button" tabindex="0">
-                        3
-                    </a>
-                    <a class="paginate_button" tabindex="0">
-                        4
-                    </a>
-                    <a class="paginate_button" tabindex="0">
-                        5
-                    </a>
-                </span>
-                <a class="next paginate_button" tabindex="0" id="DataTables_Table_1_next">
-                    Next
-                </a>
-                <a class="last paginate_button" tabindex="0" id="DataTables_Table_1_last">
-                    Last
-                </a>
+                    }
+                    #DataTables_Table_1_paginate ul li{
+                        display:inline;
+                        float: left;
+                        height: 20px;
+                        padding: 0 10px;
+                        display: block;
+                        font-size: 12px;
+                        line-height: 20px;
+                        text-align: center;
+                        cursor: pointer;
+                        outline: none;
+                        background-color: #444444;
+                        color: #fff;
+                        text-decoration: none;
+                        border-right: 1px solid rgba(0, 0, 0, 0.5);
+                        border-left: 1px solid rgba(255, 255, 255, 0.15);
+                        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+                    }
+                    
+                </style>
+
+              
             </div>
         </div>
     </div>

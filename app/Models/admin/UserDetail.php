@@ -26,5 +26,5 @@ class UserDetail extends Model
      */
     //
     // 性别 0是女 1是男,头像,地址,生日,个人简历,上次登陆时间,注册时间
-    protected $fillable = ['sex','address','birthday','label','last_time','reg_time'];
+    protected $fillable = ['sex','address','brithday','label','last_time','reg_time'];
 }

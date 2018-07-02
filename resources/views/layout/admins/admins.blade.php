@@ -48,7 +48,7 @@
         
         	<!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
         	<div id="mws-logo-wrap">
-            	<h3 style='color:white'>lamp203商城</h3>
+            	<h3 style='color:white'>我的博客</h3>
 			</div>
         </div>
         
